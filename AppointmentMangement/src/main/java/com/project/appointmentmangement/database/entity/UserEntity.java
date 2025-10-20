@@ -32,7 +32,7 @@ public class UserEntity {
     @Builder.Default
     private Boolean isEnabled = true;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER )
     private List<UserRolesEntity> roles;
 
     @OneToOne

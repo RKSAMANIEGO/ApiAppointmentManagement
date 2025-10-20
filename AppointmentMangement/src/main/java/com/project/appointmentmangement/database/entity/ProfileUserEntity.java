@@ -11,7 +11,6 @@ import lombok.*;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class ProfileUserEntity extends ProfileEntity {
 
     @Column(length = 15, nullable = true)

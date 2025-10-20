@@ -10,6 +10,7 @@ import com.project.appointmentmangement.database.entity.UserEntity;
 import com.project.appointmentmangement.dto.mapper.ProfileMapper;
 import com.project.appointmentmangement.service.IProfileService;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +24,7 @@ public class ProfileImpl implements IProfileService {
 
     @Override
     public ProfileResponseDto getProfile(Authentication authentication) {
-        UserEntity userFound = userRepository.findByUsername(authentication.getName()).orElseThrow();
+        UserEntity userFound = userRepository.findByEmail(authentication.getName()).orElseThrow(()-> new UsernameNotFoundException("User not found"));
         return profileMapper.profileEntityToDto(userFound.getProfile());
     }
 

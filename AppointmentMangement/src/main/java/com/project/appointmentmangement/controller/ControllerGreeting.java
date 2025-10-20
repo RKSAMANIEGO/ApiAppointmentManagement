@@ -1,8 +1,7 @@
 package com.project.appointmentmangement.controller;
-import org.springframework.http.*;
+
 import org.springframework.web.bind.annotation.*;
-
-
+import org.springframework.http.*;
 import java.util.Map;
 
 @RestController

@@ -15,7 +15,7 @@ public class ProfileController {
 
     private final IProfileService profileService;
 
-    @GetMapping
+    @GetMapping("/getProfile")
     public ResponseEntity<?> getProfile(Authentication auth){
         return ResponseEntity.ok().body(profileService.getProfile(auth));
     }

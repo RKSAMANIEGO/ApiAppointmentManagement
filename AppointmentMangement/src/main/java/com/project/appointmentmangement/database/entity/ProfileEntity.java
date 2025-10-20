@@ -12,7 +12,7 @@ import org.hibernate.type.SqlTypes;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Builder
-public abstract class ProfileEntity {
+public class ProfileEntity {
 
     @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
