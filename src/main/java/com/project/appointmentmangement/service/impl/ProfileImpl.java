@@ -1,6 +1,5 @@
 package com.project.appointmentmangement.service.impl;
 
-import com.project.appointmentmangement.database.repository.IProfileUserRepository;
 import com.project.appointmentmangement.database.repository.IProfileRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.project.appointmentmangement.database.repository.IUserRepository;
@@ -20,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProfileImpl implements IProfileService {
 
-    private final IProfileUserRepository profileUserRepository;
     private final IProfileRepository profileRepository;
     private final IUserRepository userRepository;
     private final ProfileMapper profileMapper;
