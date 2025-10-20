@@ -1,16 +1,17 @@
 package com.project.appointmentmangement.service.impl;
 
 import com.project.appointmentmangement.database.repository.IProfileRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.project.appointmentmangement.database.repository.IUserRepository;
 import com.project.appointmentmangement.database.entity.ProfileUserEntity;
 import com.project.appointmentmangement.dto.request.ProfileUserUpdateDto;
 import com.project.appointmentmangement.dto.response.ProfileResponseDto;
+import com.project.appointmentmangement.database.entity.ProfileEntity;
 import com.project.appointmentmangement.dto.response.SaveResponseDto;
 import com.project.appointmentmangement.database.entity.UserEntity;
 import com.project.appointmentmangement.dto.mapper.ProfileMapper;
 import com.project.appointmentmangement.service.IProfileService;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
@@ -30,9 +31,10 @@ public class ProfileImpl implements IProfileService {
 
     @Override
     public SaveResponseDto updateProfileUser(ProfileUserUpdateDto profile) {
-        ProfileUserEntity profileFound =(ProfileUserEntity) profileRepository.findById(profile.id()).orElseThrow(() -> new IllegalArgumentException("Profile not found!"));
-        profileMapper.updateDtoToProfileUserEntity(profileFound,profile);
+        ProfileEntity profileFound =profileRepository.findById(profile.id()).orElseThrow(() -> new IllegalArgumentException("Profile not found!"));
+        if(!(profileFound instanceof  ProfileUserEntity))  throw new RuntimeException("User not found");
+        profileMapper.updateDtoToProfileUserEntity((ProfileUserEntity) profileFound,profile);
         profileRepository.save(profileFound);
-        return SaveResponseDto.builder().id(profileFound.getId()).message("Profile user saved successfully¡").build();
+        return SaveResponseDto.builder().id(profileFound.getId()).message("Profile user updated successfully¡").build();
     }
 }

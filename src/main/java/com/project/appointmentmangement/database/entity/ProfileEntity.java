@@ -23,13 +23,13 @@ public class ProfileEntity {
     @OneToOne(mappedBy = "profile")
     private UserEntity user;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String name;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String lastname;
 
-    @Column(length = 15, nullable = true)
+    @Column(length = 15)
     private String phone;
 
     @Column(name="is_enabled")
